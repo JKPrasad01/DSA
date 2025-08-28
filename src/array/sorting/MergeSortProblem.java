@@ -41,6 +41,7 @@ public class MergeSortProblem {
             res[k++]=start[i++];
         }
 
+
         while (j< mid.length){
             res[k++]=mid[j++];
         }
