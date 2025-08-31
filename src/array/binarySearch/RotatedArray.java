@@ -1,4 +1,4 @@
-package d.linkedlist.binarySearch;
+package array.binarySearch;
 
 public class RotatedArray {
     public static void main(String[] args) {

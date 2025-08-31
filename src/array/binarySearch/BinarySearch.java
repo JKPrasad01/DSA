@@ -1,7 +1,6 @@
-package d.linkedlist.binarySearch;
+package array.binarySearch;
 
 import java.util.HashMap;
-import java.util.HashSet;
 
 public class BinarySearch {
 
