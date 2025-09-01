@@ -1,5 +1,8 @@
 package trees.bsf;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DFS {
 
     public static void main(String[] args) {
@@ -26,6 +29,55 @@ public class DFS {
 
         return Math.max(left,right);
 
+    }
+
+    //preOrder
+    public List<Integer> preorderTraversal(TreeNode root) {
+
+        List<Integer> list=new ArrayList<>();
+
+        preOrder(root,list);
+        return list;
+    }
+
+    private void preOrder(TreeNode node, List<Integer> list) {
+        if(node==null)return;
+        list.add(node.val);
+        preOrder(node.left,list);
+        preOrder(node.right,list);
+    }
+
+
+    //inOrder
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> res=new ArrayList<>();
+
+        inOrder(root,res);
+    return res;
+    }
+
+    private void inOrder(TreeNode root, List<Integer> res) {
+        if (root==null)return;
+
+        inOrder(root.left,res);
+        res.add(root.val);
+        inOrder(root.right,res);
+    }
+
+    //postOrder
+    public List<Integer> postorderTraversal(TreeNode root) {
+        List<Integer> res=new ArrayList<>();
+
+        postOrder(root,res);
+        return res;
+    }
+
+    private void postOrder(TreeNode root, List<Integer> res) {
+        if (root==null)return;
+
+        postOrder(root.left,res);
+        postOrder(root.right,res);
+        res.add(root.val);
     }
 
     // check the tree is balanced
