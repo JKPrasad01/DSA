@@ -135,4 +135,39 @@ public class DFS {
         max=Math.max(max,l+r+node.val);
         return Math.max(l,r)+node.val;
     }
+
+    public void flatten(TreeNode root) {
+        if(root==null)return;
+
+        TreeNode cur=root;
+
+        while (cur!=null){
+
+            if(cur.left!=null){
+                TreeNode leftMost=cur.left;
+                while (leftMost.right!=null){
+                    leftMost=leftMost.right;
+                }
+                leftMost.right=cur.right;
+                cur.right=cur.left;
+                cur.left=null;
+            }
+            cur=cur.right;
+        }
+    }
+
+
+
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if(root==null)return null;
+
+        if(root==p || root==q)return root;
+        TreeNode left=lowestCommonAncestor(root.left,p,q);
+        TreeNode right=lowestCommonAncestor(root.right,p,q);
+
+        if(left!=null && right!=null)return root;
+
+        return left==null ? right : left;
+    }
+
 }
