@@ -231,4 +231,39 @@ public class BinarySearch {
         return nums[e];
     }
 
+
+    //binary search in 2D Array
+    public boolean searchMatrix(int[][] ar, int target) {
+
+        int s=0;
+        int e=(ar[0].length * ar.length)-1;
+
+        while(s<=e){
+            int m=s+(e-s)/2;
+
+            int r=m/ar[0].length;
+            int c=m%ar[0].length;
+            if(ar[r][c]==target)return true;
+            else if(ar[r][c]<target)s=m+1;
+            else e=m-1;
+        }
+        return false;
+    }
+
+
+//    Input: matrix = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]], target = 5
+//    Output: true
+    public boolean searchMatrix2(int[][] matrix, int target) {
+
+        int s=0;
+        int e=matrix[0].length-1;
+
+        while(s<matrix.length && e>=0){
+
+            if(matrix[s][e]==target)return true;
+            else if(matrix[s][e]<target)s++;
+            else e--;
+        }
+        return false;
+    }
 }
