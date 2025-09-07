@@ -8,6 +8,79 @@ public class BinarySearch {
 
     }
 
+    public int mySqrt(int X) {
+
+        long s=1;
+        long e=X;
+
+
+        while(s<=e){
+
+            long m=s+(e-s)/2;
+
+            if(m*m==X)return (int)m;
+            else if(m*m<X)s=m+1;
+            else e=m-1;
+        }
+
+        return (int)e;
+    }
+
+
+    public int guessNumber(int n) {
+
+        int s=1;
+        int e=n;
+
+        while(s<e){
+            int m=s+(e-s)/2;
+
+            int num=guess(m);
+
+            if(num==-1)e=m-1;
+            else if(num==1)s=m+1;
+            else{
+                return m;
+            }
+        }
+        return -1;
+    }
+
+    private int guess(int m) {
+            return 0;
+    }
+
+    public int firstBadVersion(int n) {
+
+        int s=1;
+        int e=n;
+        int res=-1;
+        while(s<=e){
+
+            int m=s+(e-s)/2;
+
+            boolean isBad=isBadVersion(m);// commented. because it will work on leetCode
+
+            if(!isBad){
+                s=m+1;
+            }
+            else{
+                res=m;
+                if(true){
+                    e=m-1;
+                }
+                else{
+                    s=m+1;
+                }
+            }
+        }
+        return res;
+    }
+
+    private boolean isBadVersion(int m) {
+        int res=13;
+        return res==m;
+    }
 
     //nums = [-1,0,3,5,9,12], target = 9
 
@@ -122,6 +195,20 @@ public class BinarySearch {
         return res;
     }
 
+    public boolean isPerfectSquare(int num) {
+
+        long s=0;
+        long e=num;
+
+        while(s<=e){
+            long m=s+(e-s)/2;
+
+            if(m*m<num)s=m+1;
+            else if(m*m>num)e=m-1;
+            else return true;
+        }
+        return false;
+    }
 
     //floor
     //[1, 2, 8, 10, 10, 12, 19], x = 5
