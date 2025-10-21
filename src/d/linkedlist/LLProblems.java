@@ -1,5 +1,7 @@
 package d.linkedlist;
 
+import java.util.List;
+
 //  Definition for singly-linked list.
    class ListNode {
     int val;
@@ -70,39 +72,110 @@ public class LLProblems {
         }
         return prev;
     }
+    public ListNode reverseListRec(ListNode head) {
 
-//
-//    Input: list1 = [1,2,4], list2 = [1,3,4]
-//    Output: [1,1,2,3,4,4]
+        if(head==null && head.next!=null){
+            return head;
+        }
+        ListNode newHead= reverseListRec(head.next);
+
+        head.next.next=head;
+        head.next=null;
+        return newHead;
+    }
 
 
+
+//    Input: head = [1,2,3,4,5]
+//    Output: [5,4,3,2,1]
+
+    public ListNode reverseList(ListNode head) {
+
+        if(head==null)return null;
+
+        ListNode prev=null;
+        ListNode cur=head;
+
+        while (cur.next!=null){
+            ListNode Next=cur.next;
+            cur.next=prev;
+            prev=cur;
+            cur=Next;
+        }
+        return prev;
+    }
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+
+        ListNode a=headA;
+        ListNode b=headB;
+
+        while (a!=b){
+
+         a = a!=null ? a.next : headB;
+         b= b!=null ? b.next : headA;
+        }
+        return a;
+    }
+    
+    //    Input: list1 = [1,2,4], list2 = [1,3,4]
+    //    Output: [1,1,2,3,4,4]
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        ListNode dummy=new ListNode();
-        ListNode cur=dummy;
 
-        while (list1!=null && list2!=null){
-            if(list1.val<list2.val){
-                cur.next=list1;
-                list1=list1.next;
+        ListNode cur1 = list1;
+        ListNode cur2=list2;
+
+        ListNode dummy=new ListNode(0);
+        ListNode node =dummy.next;
+        while (cur1!=null && cur2!=null){
+            if(cur1.val<cur2.val){
+                dummy.next=cur1;
+                cur1= cur1.next;
             }
             else{
-                cur.next=list2;
-                list2=list2.next;
+                dummy.next=cur2;
+                cur2=cur2.next;
             }
-            cur=cur.next;
+            dummy=dummy.next;
         }
-
-        while (list1!=null){
-            cur.next=list1;
-            list1=list1.next;
-            cur=cur.next;
+        while (cur1!=null){
+                dummy.next=cur1;
+                cur1= cur1.next;
+            dummy=dummy.next;
         }
-
-        while (list2!=null){
-            cur.next=list2;
-            list2=list2.next;
-            cur=cur.next;
+        while (cur2!=null){
+                dummy.next=cur2;
+                cur2=cur2.next;
+            dummy=dummy.next;
         }
-        return dummy.next;
+        return node;
     }
+
+
+//    Input: head = [4,2,1,3]
+    public ListNode sortList(ListNode head) {
+        if(head==null || head.next==null)return head;
+
+        ListNode node=head;
+
+        while(node!=null){
+            ListNode cur=node;
+            while (cur.next!=null){
+                ListNode N=cur.next;
+                if(cur.val>N.val){
+                    int temp=cur.val;
+                    cur.val=N.val;
+                    N.val=temp;
+                }
+                cur=cur.next;
+            }
+            node=node.next;
+        }
+        return head;
+    }
+
+
+    
+//    public ListNode sortList(ListNode head) {
+//
+//    }
 }

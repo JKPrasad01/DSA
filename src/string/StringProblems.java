@@ -36,4 +36,9 @@ public class StringProblems {
         }
         return true;
     }
+
+
+    public String largestOddNumber(String num) {
+
+    }
 }
