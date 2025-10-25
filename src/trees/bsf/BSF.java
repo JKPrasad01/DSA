@@ -130,6 +130,85 @@ public class BSF {
 
     }
 
+    public List<List<Integer>> levelOrderBottom(TreeNode root) {
+
+        List<List<Integer>> res=new ArrayList<>();
+        if(root==null)return res;
+
+        Queue<TreeNode> q=new LinkedList<>();
+        q.offer(root);
+
+        while (!q.isEmpty()){
+            int length = q.size();
+
+            List<Integer> al=new ArrayList<>();
+
+            for(int i=0;i<length;i++){
+
+                TreeNode cur=q.poll();
+                if(cur.left!=null)q.offer(cur.left);
+                if(cur.right!=null)q.offer(cur.right);
+
+                al.add(cur.val);
+            }
+
+            res.addFirst(al);
+        }
+        return res;
+    }
+
+
+    public Node connect(Node root) {
+
+       if(root==null)return null;
+
+       Node leftMost=root;
+
+       while (leftMost.left!=null){
+
+           Node cur=leftMost;
+
+           while (cur!=null){
+
+               cur.left=cur.right;
+
+               if(cur.next!=null)cur.right.next=cur.next.left;
+
+               cur=cur.next;
+           }
+           leftMost = leftMost.left;
+       }
+       return root;
+    }
+
+
+
+
+    public List<Integer> rightSideView(TreeNode root) {
+
+
+        List<Integer> res=new ArrayList<>();
+        if(root!=null)return null;
+
+        Queue<TreeNode> q=new LinkedList<>();
+
+        while (!q.isEmpty()){
+
+            int length=q.size();
+
+            for(int i=0;i<length;i++){
+
+                TreeNode cur=q.poll();
+
+                if(cur.left!=null)q.offer(cur.left);
+                if(cur.right!=null)q.offer(cur.right);
+
+                if(i==length-1)res.add(cur.val);
+            }
+        }
+        return res;
+    }
+
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
         List<List<Integer>> result=new ArrayList<>();
 
