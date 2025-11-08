@@ -72,16 +72,59 @@ public class LLProblems {
         }
         return prev;
     }
+
     public ListNode reverseListRec(ListNode head) {
 
-        if(head==null && head.next!=null){
+
+        if(head==null || head.next==null){
             return head;
         }
-        ListNode newHead= reverseListRec(head.next);
 
+        ListNode newHead = reverseListRec(head.next);
         head.next.next=head;
         head.next=null;
         return newHead;
+    }
+
+
+
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+
+        ListNode dummy=new ListNode(-1);
+        dummy.next=head;
+
+        ListNode f=dummy;
+        ListNode s=dummy;
+
+
+        for(int i=0;i<n;i++){
+            f=f.next;
+        }
+
+        while (f.next!=null){
+            f=f.next;
+            s=s.next;
+        }
+        s.next=s.next.next;
+
+        return dummy.next;
+
+    }
+
+
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+
+
+        ListNode a= headA;
+        ListNode b=headB;
+
+        while(a!=b){
+
+            a=a!=null ? a.next : headB;
+            b=b!=null ? b.next : headA;
+        }
+
+        return  a;
     }
 
 
