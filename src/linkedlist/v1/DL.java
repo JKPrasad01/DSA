@@ -1,4 +1,4 @@
-package d.linkedlist;
+package linkedlist.v1;
 
 public class DL {
     private Node head;

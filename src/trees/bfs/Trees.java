@@ -1,4 +1,4 @@
-package trees.bsf;
+package trees.bfs;
 
 public class Trees {
     private TreeNode root;

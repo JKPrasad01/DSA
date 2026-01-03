@@ -1,4 +1,4 @@
-package trees.bsf;
+package trees.bfs;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

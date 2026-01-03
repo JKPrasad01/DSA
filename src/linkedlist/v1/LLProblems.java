@@ -1,6 +1,4 @@
-package d.linkedlist;
-
-import java.util.List;
+package linkedlist.v1;
 
 //  Definition for singly-linked list.
    class ListNode {
