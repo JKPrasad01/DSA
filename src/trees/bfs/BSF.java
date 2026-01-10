@@ -158,7 +158,7 @@ public class BSF {
     }
 
 
-    public Node connect(Node root) {
+    public Node connects(Node root) {
 
        if(root==null)return null;
 
@@ -184,7 +184,7 @@ public class BSF {
 
 
 
-    public List<Integer> rightSideView(TreeNode root) {
+    public List<Integer> rightSideViews(TreeNode root) {
 
 
         List<Integer> res=new ArrayList<>();
