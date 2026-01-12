@@ -64,20 +64,20 @@ public class GraphProblems {
 
     public int findCircleNum(int[][] isConnected) {
 
-        boolean[] visited = new boolean[isConnected.length];
+        int n=isConnected.length;
+        boolean[] visited = new boolean[n];
         int count =0;
 
-        for(int i=0;i<isConnected.length;i++){
+        for(int i=0;i<n;i++){
             if(!visited[i]){
                 dfs(i, visited,isConnected);
                 count++;
             }
         }
-
         return count;
     }
 
-    public void dfs(int i,boolean[] visited,int[][] isConnected){
+    private void dfs(int i,boolean[] visited,int[][] isConnected){
         visited[i]=true;
 
         for(int j=0;j<isConnected[i].length;j++){
@@ -86,9 +86,4 @@ public class GraphProblems {
             }
         }
     }
-
-
-
-
-
 }
