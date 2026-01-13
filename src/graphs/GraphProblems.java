@@ -86,4 +86,25 @@ public class GraphProblems {
             }
         }
     }
+
+    public int[][] floodFill(int[][] image, int sr, int sc, int color) {
+
+        if(image[sr][sc]==color)return image;
+        dfsFloodFill(image,image[sr][sc],color,sr,sc);
+        return image;
+    }
+
+    private void dfsFloodFill(int[][] image, int color,int newColor,int i,int j) {
+
+        if(i< 0 || j<0 || i>image.length-1 || j>image[0].length-1 ){
+            return;
+        }
+        if(image[i][j]!=color)return;
+        image[i][j]=newColor;
+
+        dfsFloodFill(image,color,newColor,i-1,j);
+        dfsFloodFill(image,color,newColor,i+1,j);
+        dfsFloodFill(image,color,newColor,i,j-1);
+        dfsFloodFill(image,color,newColor,i,j+1);
+    }
 }
