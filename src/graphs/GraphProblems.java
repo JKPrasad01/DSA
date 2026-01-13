@@ -62,6 +62,7 @@ public class GraphProblems {
     }
 
 
+    //number of provinces
     public int findCircleNum(int[][] isConnected) {
 
         int n=isConnected.length;
@@ -87,6 +88,7 @@ public class GraphProblems {
         }
     }
 
+    // number of islands
     public int numIslands(char[][] grid) {
         int count=0;
         for(int i=0;i<grid.length;i++){
@@ -112,6 +114,8 @@ public class GraphProblems {
         dfsIslands(grid,i+1,j);//down
     }
 
+
+    // flood fill
     public int[][] floodFill(int[][] image, int sr, int sc, int color) {
 
         if(image[sr][sc]==color)return image;
