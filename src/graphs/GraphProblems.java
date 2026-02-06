@@ -62,6 +62,7 @@ public class GraphProblems {
     }
 
 
+    //number of provinces
     public int findCircleNum(int[][] isConnected) {
 
         int n=isConnected.length;
@@ -87,6 +88,7 @@ public class GraphProblems {
         }
     }
 
+    // number of islands
     public int numIslands(char[][] grid) {
         int count=0;
         for(int i=0;i<grid.length;i++){
@@ -110,5 +112,59 @@ public class GraphProblems {
         dfsIslands(grid, i, j-1);//left side
         dfsIslands(grid,i-1,j);//up
         dfsIslands(grid,i+1,j);//down
+    }
+
+
+    // flood fill
+    public int[][] floodFill(int[][] image, int sr, int sc, int color) {
+
+        if(image[sr][sc]==color)return image;
+        dfsFloodFill(image,image[sr][sc],color,sr,sc);
+        return image;
+    }
+
+    private void dfsFloodFill(int[][] image, int color,int newColor,int i,int j) {
+
+        if(i< 0 || j<0 || i>image.length-1 || j>image[0].length-1 ){
+            return;
+        }
+        if(image[i][j]!=color)return;
+        image[i][j]=newColor;
+
+        dfsFloodFill(image,color,newColor,i-1,j);
+        dfsFloodFill(image,color,newColor,i+1,j);
+        dfsFloodFill(image,color,newColor,i,j-1);
+        dfsFloodFill(image,color,newColor,i,j+1);
+    }
+
+    //this is for vertical , horizontal and diagonal elements
+    public int countIslands(char[][] grid) {
+
+        int count=0;
+        for(int i=0;i<grid.length;i++){
+            for (int j=0;j<grid[0].length;j++){
+                count++;
+                dfsCountIslands(grid,i,j);
+            }
+        }
+
+        return count;
+    }
+
+    private void dfsCountIslands(char[][] grid, int i, int j) {
+
+        if(i<0 || i> grid.length-1 || j<0 || j>grid[0].length-1 || grid[i][j]!='L')return;
+        grid[i][j]='W';
+
+        dfsCountIslands(grid,i,j+1);
+        dfsCountIslands(grid,i,j-1);
+        dfsCountIslands(grid,i+1,j);
+        dfsCountIslands(grid,i-1,j);
+
+        dfsCountIslands(grid,i-1,j-1);
+        dfsCountIslands(grid,i-1,j+1);
+
+        dfsCountIslands(grid,i+1,j-1);
+        dfsCountIslands(grid,i+1,j+1);
     }
 }
