@@ -1,7 +1,6 @@
 package alex_xu_sheet.twoPointer;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 
 public class TwoPointerProblems {
     public static void main(String[] args) {
@@ -32,12 +31,43 @@ public class TwoPointerProblems {
     }
 
 //    2.triplet
-
-
     public ArrayList<ArrayList<Integer>> triplet_sum(ArrayList<Integer> nums) {
 
-        ArrayList<Integer> sorted = (ArrayList<Integer>) nums.stream().sorted();
+        Collections.sort(nums);
+        ArrayList<ArrayList<Integer>> res=new ArrayList<>();
+        int n=nums.size();
+        for(int i=0;i<n-2;i++){
+
+            if(i>0 && Objects.equals(nums.get(i), nums.get(i - 1))){
+                continue;
+            }
+
+            int j=i+1;
+            int k=n-1;
+
+            while (j<k){
+
+                int sum=nums.get(i)+nums.get(j)+nums.get(k);
+
+                if(sum==0){
+                    res.add(new ArrayList<>(
+                            List.of(nums.get(i), nums.get(j), nums.get(k))
+                    ));
+                    j++;
+                    k--;
+
+                    while (j<k && nums.get(j).equals(nums.get(j-1)))j++;
+                    while (j<k && nums.get(k).equals(nums.get(k+1)))k--;
+                }
+                else if(sum<0){
+                    j++;
+                }
+                else{
+                    k--;
+                }
+            }
 
         }
+        return res;
     }
 }
