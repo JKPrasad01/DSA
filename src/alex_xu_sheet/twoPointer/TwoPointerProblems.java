@@ -70,4 +70,23 @@ public class TwoPointerProblems {
         }
         return res;
     }
+
+
+    public int largest_container(ArrayList<Integer> heights) {
+        int i=0;
+        int j=heights.size()-1;
+
+        int max=0;
+        while (i<j){
+
+            int water=Math.min(heights.get(i),heights.get(j))*(j-i);
+            max=Math.max(water,max);
+
+            if(heights.get(i)<heights.get(j))i++;
+            else j--;
+        }
+
+        return max;
+
+    }
 }
