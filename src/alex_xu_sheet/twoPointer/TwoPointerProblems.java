@@ -71,7 +71,38 @@ public class TwoPointerProblems {
         return res;
     }
 
+    //3.is palindrome
+    public boolean isPalindrome(String s){
 
+        int i=0;
+        int j=s.length()-1;
+
+
+        while (i<j) {
+
+            if(checkAlpabets(s.charAt(i))) {
+                i++;
+                continue;
+            }
+            if(checkAlpabets(s.charAt(j))) {
+                j--;
+                continue;
+            }
+
+            if(s.charAt(i)!=s.charAt(j))return false;
+            i++;
+            j--;
+        }
+
+        return true;
+    }
+
+    private boolean checkAlpabets(char c) {
+        return (c >= 65 && c <= 90) || (c >= 97 && c <= 122);
+    }
+
+
+    //4. largest_container
     public int largest_container(ArrayList<Integer> heights) {
         int i=0;
         int j=heights.size()-1;
